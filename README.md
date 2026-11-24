@@ -1,11 +1,3 @@
-" çizgisinden sonraki her şeyi yapıştır.
-    3) Profil > Edit profile > Bio kısmına şunu yaz:
-       Embedded Software Engineer · STM32 · FreeRTOS · C/C++ · Avionics · TEKNOFEST rocket flight computer
-    4) "Pinned" alanına uçuş bilgisayarı, yer istasyonu (astra-arayuz) ve ADAS tezi depolarını sabitle.
-  Köşeli parantezli [ ] yerleri, ilgili depolar hazır olunca dolduracağız.
--->
------
-
 # Hi, I'm Özgün 👋
 
 **Embedded Software Engineer** based in Istanbul. I build deterministic, low-latency firmware for avionics:
