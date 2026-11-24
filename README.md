@@ -32,10 +32,11 @@ flight computers, sensor fusion and real-time telemetry on **STM32** and **ESP32
 
 ## Featured projects
 
-### 🛰️ Rocket Flight Computer (firmware is team-owned and private; happy to walk through the architecture in an interview)
-A mission-critical flight computer in C/C++ on STM32 and ESP32. It reads IMU and barometer data over SPI/I2C
-and estimates altitude and velocity with a Kalman filter. It uses dual-sensor redundancy, and an FSM-based recovery
-algorithm decides when to deploy the parachutes. The firmware is interrupt-driven and fault-tolerant.
+### 🛰️ Rocket Flight Computer: [architecture overview](https://github.com/ozgunturkoz/rocket-flight-computer)
+STM32H7 + FreeRTOS avionics with 8 tasks and a strict mutex-ordering contract. A triple-barometer + IMU
+**median → Kalman** fusion chain votes out faulty sensors, and an 8-state recovery FSM runs two-stage parachute
+deployment over redundant pyro channels. It also has an independent watchdog, microSD black-box logging and
+hardware-in-the-loop competition tests. *(Firmware is team-owned and private; the README documents the design.)*
 
 ### 📡 Rocket Ground Station 2026: [astra-ground-station](https://github.com/ozgunturkoz/astra-ground-station)
 A C# telemetry station for the rocket and the payload. It parses binary frames with **CRC16-CCITT** and
@@ -43,6 +44,7 @@ checksum validation, and a sliding-buffer resync keeps it aligned on noisy RF li
 charts, satellite maps and 3D orientation, and the station forwards data to the referee ground station.
 Earlier version: [astra-arayuz](https://github.com/ozgunturkoz/astra-arayuz).
 
-### 🚗 ADAS Sensor Fusion (B.Sc. thesis)
-Fuses monocular camera object tracking (OpenCV + YOLO) with raw telemetry through a Kalman filter
-to estimate the distance to a target vehicle in time-critical validation scenarios.
+### 🚗 ADAS Collision Warning (B.Sc. thesis): [adas-collision-warning](https://github.com/ozgunturkoz/adas-collision-warning)
+Combines YOLOv8 + ByteTrack camera tracking with a TF02-Pro LiDAR (ESP32 nodes over ESP-NOW) and GPS speed.
+Median + Kalman fusion estimates distance and time-to-collision, and the system raises staged warnings.
+**4.9 % mean distance error, 69.2 % better than camera-only, 20–30 FPS.**
